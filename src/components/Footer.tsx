@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import FooterLogo from "./FooterLogo";
 
 const Footer = () => {
@@ -9,7 +10,10 @@ const Footer = () => {
         <p>Cardholder: @Dustfrei</p>
       </div>
       <p className="mt-8 mb-4  text-center">THANK YOU FOR VISITING!</p>
-      <FooterLogo />
+      <Link to="/">
+        {" "}
+        <FooterLogo />
+      </Link>
     </>
   );
 };

@@ -8,8 +8,11 @@ import RootLayout from "./RootLayout";
 import Home from "./pages/Home";
 import WeatherOutfit from "./pages/WeatherOutfit";
 import Forecast from "./pages/Forecast";
+import { useState } from "react";
+import { IsCelsiusContext } from "./context/Context";
 
 function App() {
+  const [isCelsius, setIsCelsius] = useState<boolean>(true);
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
@@ -21,7 +24,10 @@ function App() {
   );
   return (
     <>
-      <RouterProvider router={router} />
+      {" "}
+      <IsCelsiusContext.Provider value={{ isCelsius, setIsCelsius }}>
+        <RouterProvider router={router} />{" "}
+      </IsCelsiusContext.Provider>
     </>
   );
 }

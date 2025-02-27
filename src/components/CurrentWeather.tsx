@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { FC, useContext } from "react";
-import { IsCelsiusContext } from "../context/Context";
+import { DataForOutfitContext, IsCelsiusContext } from "../context/Context";
 import useFetch from "../hooks/useFetch";
 import { IDataWeather } from "../interfaces/IDataWeather";
 import { getCurrentURL } from "../utils/api/weatherApi";
@@ -10,10 +10,17 @@ interface CurrentWeatherProps {
 }
 const CurrentWeather: FC<CurrentWeatherProps> = ({ cityName }) => {
   const { isCelsius, setIsCelsius } = useContext(IsCelsiusContext);
+  const { setDataForOutfit } = useContext(DataForOutfitContext);
 
   const { data: dataWeather, loading } = useFetch<IDataWeather>(
     getCurrentURL(cityName, isCelsius)
   );
+  if (dataWeather) {
+    setDataForOutfit({
+      weatherDescription: dataWeather.weather[0].description,
+      feelsLikeTemp: Math.round(dataWeather.main.feels_like),
+    });
+  }
   if (!dataWeather) return;
 
   return (
@@ -34,7 +41,9 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ cityName }) => {
             </p>
             <button type="button" onClick={() => setIsCelsius(!isCelsius)}>
               {" "}
-              <p className="text-neutral-500">{isCelsius ? "➪°F" : "➪°C"}</p>
+              <p className="text-neutral-400 hover:text-neutral-700">
+                {isCelsius ? "➪°F" : "➪°C"}
+              </p>
             </button>
           </div>
           <p>

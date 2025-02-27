@@ -11,7 +11,7 @@ interface CurrentWeatherProps {
 const CurrentWeather: FC<CurrentWeatherProps> = ({ cityName }) => {
   const { isCelsius, setIsCelsius } = useContext(IsCelsiusContext);
 
-  const { data: dataWeather } = useFetch<IDataWeather>(
+  const { data: dataWeather, loading } = useFetch<IDataWeather>(
     getCurrentURL(cityName, isCelsius)
   );
   if (!dataWeather) return;
@@ -21,25 +21,31 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ cityName }) => {
       <p>
         | ** {format(Date.now(), "EEEE")}, {format(Date.now(), "PP")}
       </p>{" "}
-      <p className="font-bold">{dataWeather.weather[0].description}</p>
-      <div className="flex  justify-between">
-        {" "}
-        <p>
-          Current Temp.: {Math.round(dataWeather.main.temp)}{" "}
-          {isCelsius ? "°C" : "°F"}
-        </p>
-        <button type="button" onClick={() => setIsCelsius(!isCelsius)}>
-          {" "}
-          <p className="text-neutral-500">{isCelsius ? "➪°F" : "➪°C"}</p>
-        </button>
-      </div>
-      <p>
-        Feels like:{" "}
-        <span className="font-bold">
-          {Math.round(dataWeather.main.feels_like)}
-        </span>{" "}
-        {isCelsius ? "°C" : "°F"}
-      </p>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <p className="font-bold">{dataWeather.weather[0].description}</p>
+          <div className="flex  justify-between">
+            {" "}
+            <p>
+              Current Temp.: {Math.round(dataWeather.main.temp)}{" "}
+              {isCelsius ? "°C" : "°F"}
+            </p>
+            <button type="button" onClick={() => setIsCelsius(!isCelsius)}>
+              {" "}
+              <p className="text-neutral-500">{isCelsius ? "➪°F" : "➪°C"}</p>
+            </button>
+          </div>
+          <p>
+            Feels like:{" "}
+            <span className="font-bold">
+              {Math.round(dataWeather.main.feels_like)}
+            </span>{" "}
+            {isCelsius ? "°C" : "°F"}
+          </p>
+        </>
+      )}
     </div>
   );
 };

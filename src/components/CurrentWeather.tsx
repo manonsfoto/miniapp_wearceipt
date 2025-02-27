@@ -12,16 +12,16 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ cityName }) => {
   const { isCelsius, setIsCelsius } = useContext(IsCelsiusContext);
   const { setDataForOutfit } = useContext(DataForOutfitContext);
 
-  const { data: dataWeather, loading } = useFetch<IDataWeather>(
-    getCurrentURL(cityName, isCelsius)
-  );
-  if (dataWeather) {
-    setDataForOutfit({
-      weatherDescription: dataWeather.weather[0].description,
-      feelsLikeTemp: Math.round(dataWeather.main.feels_like),
-    });
-  }
-  if (!dataWeather) return;
+  // const { data: dataWeather, loading } = useFetch<IDataWeather>(
+  //   getCurrentURL(cityName, isCelsius)
+  // );
+  // if (dataWeather) {
+  //   setDataForOutfit({
+  //     weatherDescription: dataWeather.weather[0].description,
+  //     feelsLikeTemp: Math.round(dataWeather.main.feels_like),
+  //   });
+  // }
+  // if (!dataWeather) return;
 
   return (
     <div className="dashed-line-box">

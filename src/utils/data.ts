@@ -36,6 +36,12 @@ export const cities: TCity[] = [
     latitude: "49.316666",
     longitude: "-123.066666",
   },
+  {
+    name: "Berlin",
+    country: "Germany",
+    latitude: "52.516667",
+    longitude: "13.383333",
+  },
 ];
 
 export const clothingData = {

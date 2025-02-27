@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <>
       <div className="flex flex-col w-full items-start">
-        <p>CARD #: **** **** **** 8353</p>
+        <p>CARD #: **** **** **** 9876</p>
         <p>Auth Code: 123456</p>
         <p>Cardholder: @Dustfrei</p>
       </div>

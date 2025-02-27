@@ -1,5 +1,7 @@
+import { format } from "date-fns";
 import Header from "../components/Header";
 import { cities, TCity } from "../utils/data";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -7,19 +9,19 @@ const Home = () => {
       {" "}
       <Header text={"Choose Location"} />
       <div className="dashed-line-box">
-        <p>| ** It's Thursday</p>
-        <p>| ** FEB 27, 2025</p>
+        <p>| ** It's {format(Date.now(), "EEEE")}</p>
+        <p>| ** {format(Date.now(), "PP")}</p>
       </div>
       <ul className="flex flex-col justify-start w-full">
         {cities.map(({ name }: TCity, index: number) => (
           <li key={index} className="hover:bg-neutral-800 hover:text-white">
-            <button type="button">
+            <Link to={`/weather_outfit/${name.toLowerCase()}`}>
               {" "}
               <p className="uppercase">
                 {" "}
                 {(index + 1).toString().padStart(2, "0")} {name}
               </p>
-            </button>{" "}
+            </Link>{" "}
           </li>
         ))}
       </ul>

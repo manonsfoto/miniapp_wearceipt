@@ -128,7 +128,7 @@ export const clothingData = {
     },
     {
       temp_c: -5,
-      temp_f: 15,
+      temp_f: 23,
       base_layer: [
         "Thermal base layer",
         "Long-sleeve shirts",
@@ -140,7 +140,7 @@ export const clothingData = {
     },
     {
       temp_c: -10,
-      temp_f: 6,
+      temp_f: 14,
       base_layer: ["Thermal underwear", "Base layers", "Fleece-lined pants"],
       insulating_layer: ["Heavy fleece", "Wool sweater"],
       outer_layer: ["Thick down coat", "Windproof jacket"],

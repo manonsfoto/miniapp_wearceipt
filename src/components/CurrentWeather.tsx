@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { FC, useContext } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { DataForOutfitContext, IsCelsiusContext } from "../context/Context";
 import useFetch from "../hooks/useFetch";
 import { IDataWeather } from "../interfaces/IDataWeather";
@@ -11,17 +11,14 @@ interface CurrentWeatherProps {
 const CurrentWeather: FC<CurrentWeatherProps> = ({ cityName }) => {
   const { isCelsius, setIsCelsius } = useContext(IsCelsiusContext);
   const { setDataForOutfit } = useContext(DataForOutfitContext);
+  const { data, loading } = useFetch<IDataWeather>(
+    getCurrentURL(cityName, isCelsius)
+  );
 
-  // const { data: dataWeather, loading } = useFetch<IDataWeather>(
-  //   getCurrentURL(cityName, isCelsius)
-  // );
-  // if (dataWeather) {
-  //   setDataForOutfit({
-  //     weatherDescription: dataWeather.weather[0].description,
-  //     feelsLikeTemp: Math.round(dataWeather.main.feels_like),
-  //   });
-  // }
-  // if (!dataWeather) return;
+  // setDataForOutfit({
+  //   weatherDescription: data?.weather[0].description as string,
+  //   feelsLikeTemp: Math.round(Number(data?.main.feels_like)),
+  // });
 
   return (
     <div className="dashed-line-box">
@@ -32,11 +29,11 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ cityName }) => {
         <p>Loading...</p>
       ) : (
         <>
-          <p className="font-bold">{dataWeather.weather[0].description}</p>
+          <p className="font-bold">{data?.weather[0].description}</p>
           <div className="flex  justify-between">
             {" "}
             <p>
-              Current Temp.: {Math.round(dataWeather.main.temp)}{" "}
+              Current Temp.: {Math.round(Number(data?.main.temp))}{" "}
               {isCelsius ? "°C" : "°F"}
             </p>
             <button type="button" onClick={() => setIsCelsius(!isCelsius)}>
@@ -49,7 +46,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ cityName }) => {
           <p>
             Feels like:{" "}
             <span className="font-bold">
-              {Math.round(dataWeather.main.feels_like)}
+              {Math.round(Number(data?.main.feels_like))}
             </span>{" "}
             {isCelsius ? "°C" : "°F"}
           </p>

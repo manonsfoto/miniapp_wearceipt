@@ -7,6 +7,7 @@ import ForecastList from "../components/ForecastList";
 const Forecast = () => {
   const { city_name } = useParams<{ city_name: string }>();
   const selectedCity = findSelectedCity(city_name!);
+
   const navigate = useNavigate();
   return (
     <>

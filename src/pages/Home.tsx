@@ -13,8 +13,11 @@ const Home = () => {
         <p>| ** {format(Date.now(), "PP")}</p>
       </div>
       <ul className="flex flex-col justify-start w-full">
-        {cities.map(({ name }: TCity, index: number) => (
-          <li key={index} className="hover:bg-neutral-800 hover:text-white">
+        {cities.map(({ name, country }: TCity, index: number) => (
+          <li
+            key={name + country}
+            className="hover:bg-neutral-800 hover:text-white"
+          >
             <Link to={`/weather_outfit/${name.toLowerCase()}`}>
               {" "}
               <p className="uppercase">

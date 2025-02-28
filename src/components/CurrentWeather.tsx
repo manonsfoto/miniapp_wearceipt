@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext, useEffect } from "react";
 import { DataForOutfitContext, IsCelsiusContext } from "../context/Context";
 import useFetch from "../hooks/useFetch";
 import { IDataWeather } from "../interfaces/IDataWeather";
@@ -15,10 +15,14 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ cityName }) => {
     getCurrentURL(cityName, isCelsius)
   );
 
-  // setDataForOutfit({
-  //   weatherDescription: data?.weather[0].description as string,
-  //   feelsLikeTemp: Math.round(Number(data?.main.feels_like)),
-  // });
+  useEffect(() => {
+    if (data) {
+      setDataForOutfit({
+        weatherDescription: data.weather[0].description,
+        feelsLikeTemp: Math.round(data.main.feels_like),
+      });
+    }
+  }, [data]);
 
   return (
     <div className="dashed-line-box">

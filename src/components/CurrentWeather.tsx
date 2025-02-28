@@ -42,7 +42,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ cityName }) => {
             </p>
             <button type="button" onClick={() => setIsCelsius(!isCelsius)}>
               {" "}
-              <p className="text-neutral-400 hover:text-neutral-700">
+              <p className="text-neutral-400 hover:text-neutral-700 transition duration-100">
                 {isCelsius ? "➪°F" : "➪°C"}
               </p>
             </button>

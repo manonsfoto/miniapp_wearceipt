@@ -16,7 +16,7 @@ const Home = () => {
         {cities.map(({ name, country }: TCity, index: number) => (
           <li
             key={name + country}
-            className="hover:bg-neutral-800 hover:text-white"
+            className="hover:bg-neutral-800 hover:text-white transition duration-100"
           >
             <Link to={`/weather_outfit/${name.toLowerCase()}`}>
               {" "}

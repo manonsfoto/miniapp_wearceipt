@@ -23,7 +23,7 @@ const ForecastList: FC<ForecastListProps> = ({ cityName }) => {
       ) : (
         <ul className="overflow-y-scroll h-56 w-full">
           {data?.list.map((item) => (
-            <li key={item.dt} className="flex flex-col ">
+            <li key={item.dt} className="flex flex-col pr-2 ">
               <div className="flex justify-between ">
                 {" "}
                 <p>

@@ -14,8 +14,11 @@ const WeatherOutift = () => {
       <WhatToWear />
       <Link to={`/forecast/${city_name}`} className="w-full">
         {" "}
-        <div className="flex  justify-between dashed-line-box hover:bg-neutral-800 hover:text-white ">
-          <p>Check the Weather Forecast</p>
+        <div className="flex  justify-between items-center dashed-line-box hover:bg-neutral-800 hover:text-white transition duration-100 ">
+          <p>
+            What's the Weather <br />
+            for the Next 5 Days?
+          </p>
           <p>☛</p>
         </div>
       </Link>

@@ -17,9 +17,8 @@ const Forecast = () => {
       <ForecastList cityName={city_name!} />
       <button type="button" onClick={() => navigate(-1)} className="w-full">
         {" "}
-        <div className="flex  justify-between dashed-line-box hover:bg-neutral-800 hover:text-white ">
-          <p>Go Back to What to Wear</p>
-          <p>☛</p>
+        <div className="flex uppercase justify-between items-center dashed-line-box transition duration-100 hover:bg-neutral-800 hover:text-white ">
+          <p>☚</p> <p>Back to What to Wear</p>
         </div>
       </button>
     </>

@@ -14,7 +14,7 @@ const Forecast = () => {
       {" "}
       <Header text={`${selectedCity?.name}, ${selectedCity?.country}`} />
       <CurrentWeather cityName={city_name!} />
-      <ForecastList />
+      <ForecastList cityName={city_name!} />
       <button type="button" onClick={() => navigate(-1)} className="w-full">
         {" "}
         <div className="flex  justify-between dashed-line-box hover:bg-neutral-800 hover:text-white ">
